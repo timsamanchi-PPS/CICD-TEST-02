@@ -2,7 +2,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - "docker pull hashicorp/terraform:latest"
+      - "docker pull docker.io/hashicorp/terraform:latest"
   pre_build:
     commands:
       - terraform init
