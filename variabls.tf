@@ -11,3 +11,7 @@ variable "permissions_boundary" {
     type = string
   
 }
+variable "dockerHub-credentials" {
+    description = "dockerHub credentials to pull down terraform image"
+    type = string
+}
