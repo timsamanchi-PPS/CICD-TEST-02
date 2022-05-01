@@ -5,8 +5,8 @@ phases:
       - "docker pull docker.io/hashicorp/terraform:latest"
   pre_build:
     commands:
-      - terraform init
-      - terraform validate
+      - "terraform init"
+      - "terraform validate"
 
   build:
     commands:
