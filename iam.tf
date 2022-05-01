@@ -32,8 +32,8 @@ resource "aws_iam_role_policy_attachment" "tf-cicd-pipeline-attachment" {
   role = aws_iam_role.tf-codepipeline-role.name
   policy_arn = aws_iam_policy.tf-cicd-pipeline-policy.arn
 }
-# create iam role for codebuild service
 
+# create iam role for codebuild service
 resource "aws_iam_role" "tf-codebuild-role" {
   name = "tf-codebuild-role"
 
@@ -56,5 +56,20 @@ resource "aws_iam_role" "tf-codebuild-role" {
   tags = {
     Name = "tf-codebuild-role"
   }
+}
+
+resource "aws_iam_policy" "tf-cicd-build-policy" {
+  description = "build policy"
+  name = "tf-cicd-build-policy"
+  path = "/"
+  policy = data.aws_iam_policy_document.tf-cicd-build-policies.json
+}
+resource "aws_iam_role_policy_attachment" "tf-cicd-codebuild-attachment1" {
+  role = aws_iam_role.tf-codebuild-role.id
+  policy_arn = aws_iam_policy.tf-cicd-build-policy.arn
+}
+resource "aws_iam_role_policy_attachment" "tf-cicd-codebuild-attachment2" {
+  role = aws_iam_role.tf-codebuild-role.id
+  policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 }
 
